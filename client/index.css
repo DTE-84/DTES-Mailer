@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 98%;
+    --primary: 154 85% 57%;
+    --primary-foreground: 154 85% 5%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 63.9%;
+    --border: 0 0% 10%;
+    --radius: 1.5rem;
+  }
+}
+
+body {
+  @apply bg-[#050505] text-white antialiased;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+}
+
+.primary-glow {
+  box-shadow: 0 0 20px rgba(45, 237, 156, 0.2);
+}
+
+.obsidian-card {
+  @apply bg-[#0A0907] border border-white/[0.03] rounded-[2rem];
+}
