@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import OutreachPage from "./pages/Outreach";
+import SettingsPage from "./pages/Settings";
 import { 
   Shield, 
   ChevronLeft, 
   ExternalLink,
   Mail,
-  Zap
+  Zap,
+  Settings
 } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -22,7 +24,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground group-hover:text-white transition-colors">Return to Nexus</span>
         </a>
         <div className="h-4 w-px bg-white/10 mx-2" />
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <div className="relative w-10 h-10 flex items-center justify-center">
             <div className="absolute inset-0 bg-primary/20 rounded-full animate-pulse" />
             <div className="relative z-10 w-8 h-8 rounded-xl bg-black border border-primary/20 flex items-center justify-center overflow-hidden">
@@ -45,7 +47,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
             <span className="font-black tracking-tighter uppercase text-lg text-white leading-none">DTES Mailer</span>
             <span className="text-[8px] font-black uppercase tracking-[0.4em] text-primary mt-0.5">Tactical Outreach Engine</span>
           </div>
-        </div>
+        </Link>
       </div>
 
       <div className="flex items-center gap-6">
@@ -53,9 +55,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
           <Shield className="w-3.5 h-3.5 text-primary" />
           <span className="text-[9px] font-black uppercase tracking-widest text-white/60">System Integrity: 100%</span>
         </div>
-        <div className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center">
-          <Zap className="w-4 h-4 text-primary" />
-        </div>
+        <Link to="/settings" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 transition-all">
+          <Settings className="w-4 h-4 text-white" />
+        </Link>
       </div>
     </header>
 
@@ -71,6 +73,7 @@ const App = () => (
     <Layout>
       <Routes>
         <Route path="/" element={<OutreachPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="*" element={<OutreachPage />} />
       </Routes>
     </Layout>

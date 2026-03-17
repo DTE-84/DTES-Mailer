@@ -47,25 +47,25 @@ const CampaignCard = ({ title, status, recipients, openRate, clickRate }: any) =
 
 const MASTER_PROTOCOLS = [
   {
-    id: 'wp-01',
-    name: "The Wealth Transition",
-    subject: "Strategic Inquiry: The $84 Trillion Great Wealth Transfer",
-    body: "I'm reaching out because the next decade represents a critical shift in capital distribution. Our high-fidelity behavioral analytics have identified a cognitive gap in fiduciary engagement during the wealth transfer. Let's discuss how we can bridge this perimeter for your clients...",
-    tag: "Finance / High ROI"
+    id: 'de-01',
+    name: "The 5k Interval",
+    subject: "Service Alert: Your [Make] is due for its 5,000-mile optimization",
+    body: "Our records indicate your vehicle is reaching its next critical service interval. Maintaining your oil integrity and tire rotation rhythm is essential for long-term performance. We have an opening this Thursday—would you like me to reserve a spot for you?",
+    tag: "Maintenance / High Volume"
   },
   {
-    id: 'wp-02',
-    name: "The Impulse Recovery",
-    subject: "Nova Intelligence: Detected Behavioral Deviation",
-    body: "Your spending rhythm has entered a high-velocity impulse trajectory. Nova recommends an immediate 48-hour protocol pause to restore capital baseline. Let's analyze the triggers together...",
-    tag: "Behavioral / Pulse"
+    id: 'de-02',
+    name: "The Brake Safety Protocol",
+    subject: "Urgent: Safety inspection recommended for your [Model]",
+    body: "During your last visit, we noted your brake pad depth was approaching the 3/32\" threshold. To ensure your safety during wet conditions and avoid rotor damage, I recommend a proactive inspection this week. Mention this email for a complimentary pad measurement.",
+    tag: "Safety / High Urgency"
   },
   {
-    id: 'wp-03',
-    name: "Niche Outreach (Alpha)",
-    subject: "Exclusive Opportunity: High-Fidelity Solutions for [Industry]",
-    body: "Your industry is currently operating at 82% of its behavioral efficiency. We've built a tactical engine to bridge that 18% gap. If you're ready to engineering precision into your outreach, let's establish an uplink...",
-    tag: "General / Growth"
+    id: 'de-03',
+    name: "The Lease-End Sync",
+    subject: "Strategic Update: Your Lease Maturity & Service Options",
+    body: "Your current lease is approaching its perimeter. This is the optimal time to ensure all required service intervals are up to date to maximize your equity position. Let's sync on a 15-minute inspection to review your vehicle's health status...",
+    tag: "Lease / Strategic"
   }
 ];
 
@@ -78,6 +78,11 @@ export default function Outreach() {
   const [sending, setSending] = useState(false);
   const [leadsCount, setLeadsCount] = useState(0);
   const [libraryTab, setLibraryTab] = useState("Master");
+  const [vertical, setVertical] = useState("Automotive");
+
+  const filteredProtocols = MASTER_PROTOCOLS.filter(p => 
+    vertical === "General" ? true : p.tag.includes(vertical)
+  );
 
   const loadProtocol = (protocol: any) => {
     setSubject(protocol.subject);
