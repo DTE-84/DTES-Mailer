@@ -28,18 +28,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
           <div className="relative w-10 h-10 flex items-center justify-center">
             <div className="absolute inset-0 bg-primary/20 rounded-full animate-pulse" />
             <div className="relative z-10 w-8 h-8 rounded-xl bg-black border border-primary/20 flex items-center justify-center overflow-hidden">
-              <div 
-                className="w-full h-full bg-primary"
-                style={{
-                  maskImage: 'url(/dtes-logo-circular.svg)',
-                  WebkitMaskImage: 'url(/dtes-logo-circular.svg)',
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskPosition: 'center',
-                  maskSize: 'contain',
-                  WebkitMaskSize: 'contain'
-                }}
+              <img 
+                src="/DTESMLogo.svg" 
+                alt="DTES Logo"
+                className="w-full h-full object-contain"
               />
             </div>
           </div>
