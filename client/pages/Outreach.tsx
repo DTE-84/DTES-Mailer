@@ -196,7 +196,7 @@ export default function Outreach() {
           <ChevronRight className="w-3 h-3 opacity-30" />
           <span className="text-primary">Outreach</span>
         </div>
-        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-white">Broadcast Command</h1>
+        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-white">DTES-Mail Depot</h1>
         <p className="text-muted-foreground font-semibold text-sm">
           Deploy high-fidelity messaging to your niche audience via Nova.
         </p>

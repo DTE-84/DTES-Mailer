@@ -25,7 +25,7 @@ Most email tools are built for "creators." **DealerEmail** is built for the serv
 
 ## 📦 Core Sectors
 
-### **1. Broadcast Command**
+### **1. DTES-MAIL DEPOT**
 The tactical center for lead ingestion and sequence deployment.
 - **Lead Ingestion:** CSV mapping with automatic data integrity scrubbing.
 - **Transmission:** Real-time progress monitoring and tracking ID generation.
