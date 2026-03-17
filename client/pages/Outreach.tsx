@@ -300,8 +300,10 @@ export default function Outreach() {
               </div>
               <a 
                 href="/leads_sample.csv" 
-                download 
-                className="hidden md:flex items-center justify-center px-4 bg-white/5 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest text-muted-foreground hover:bg-white/10 transition-all"
+                download="leads_sample.csv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:flex items-center justify-center px-4 bg-white/5 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest text-muted-foreground hover:bg-white/10 transition-all cursor-pointer"
                 title="Download Template"
               >
                 Template
