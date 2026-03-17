@@ -101,13 +101,37 @@ export default function Outreach() {
     });
   };
 
-  const handleFileUpload = (e: any) => {
-    const count = Math.floor(Math.random() * 500) + 100; // Simulated count
-    setLeadsCount(count);
-    toast({
-      title: "Leads Ingested",
-      description: `Successfully mapped ${count} high-fidelity contacts.`,
-    });
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target?.result as string;
+      const lines = text.split('\n').filter(line => line.trim() !== '');
+      // Simple CSV parsing: assume email is in the first column or look for @
+      const emails = lines.map(line => {
+        const parts = line.split(',');
+        return parts.find(p => p.includes('@'))?.trim() || parts[0].trim();
+      }).filter(email => email.includes('@'));
+
+      if (emails.length > 0) {
+        setLeadsCount(emails.length);
+        // Store leads in state for deployment
+        (window as any)._pendingLeads = emails.map(email => ({ email }));
+        toast({
+          title: "Leads Ingested",
+          description: `Successfully mapped ${emails.length} high-fidelity contacts from ${file.name}.`,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Ingestion Error",
+          description: "No valid email addresses detected in the file.",
+        });
+      }
+    };
+    reader.readAsText(file);
   };
 
   const deployBroadcast = async () => {
@@ -122,8 +146,8 @@ export default function Outreach() {
     
     setSending(true);
     try {
-      // Sending a simulated list of leads for the staging backend
-      const leads = Array.from({ length: leadsCount }, (_, i) => ({ email: `lead-${i}@dte.solutions` }));
+      // Use uploaded leads if available, otherwise fallback to simulated
+      const leads = (window as any)._pendingLeads || Array.from({ length: leadsCount }, (_, i) => ({ email: `lead-${i}@dte.solutions` }));
       
       const res = await API.post("/api/outreach/broadcast", {
         subject,
@@ -135,6 +159,8 @@ export default function Outreach() {
         title: "Broadcast Deployed",
         description: `${res.data.message} Tracking ID: ${res.data.trackingId}`,
       });
+      // Clear pending leads after successful deployment
+      delete (window as any)._pendingLeads;
     } catch (err) {
       toast({
         variant: "destructive",
@@ -144,6 +170,22 @@ export default function Outreach() {
     } finally {
       setSending(false);
     }
+  };
+
+  const generateAIProtocol = () => {
+    toast({
+      title: "Nova AI Prompted",
+      description: "Engineering high-velocity sequence based on automotive behavioral triggers...",
+    });
+    // Simulate Nova generation
+    setTimeout(() => {
+      setSubject("URGENT: Your Vehicle's 30k Maintenance Perimeter");
+      setMessage("Our behavioral analysis indicates your vehicle is approaching its 30,000-mile performance perimeter. This is the critical stage for fluid integrity and spark plug optimization. We have a tactical opening this Friday. Shall I reserve it for you to ensure zero-downtime performance?");
+      toast({
+        title: "Protocol Engineered",
+        description: "Nova has primed the sequence for maximum conversion.",
+      });
+    }, 2000);
   };
 
   return (
@@ -170,19 +212,28 @@ export default function Outreach() {
                 <FileText className="w-4 h-4 text-primary" />
                 Protocol Library
               </h3>
-              <div className="flex gap-2 bg-white/5 p-1 rounded-xl border border-white/10">
-                {['Master', 'Custom'].map(tab => (
-                  <button 
-                    key={tab}
-                    onClick={() => setLibraryTab(tab)}
-                    className={cn(
-                      "px-4 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all",
-                      libraryTab === tab ? "bg-primary text-background shadow-lg" : "text-muted-foreground hover:text-white"
-                    )}
-                  >
-                    {tab} Protocols
-                  </button>
-                ))}
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={generateAIProtocol}
+                  className="flex items-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 px-4 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all"
+                >
+                  <Sparkles className="w-3 h-3" />
+                  Generate via Nova
+                </button>
+                <div className="flex gap-2 bg-white/5 p-1 rounded-xl border border-white/10">
+                  {['Master', 'Custom'].map(tab => (
+                    <button 
+                      key={tab}
+                      onClick={() => setLibraryTab(tab)}
+                      className={cn(
+                        "px-4 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all",
+                        libraryTab === tab ? "bg-primary text-background shadow-lg" : "text-muted-foreground hover:text-white"
+                      )}
+                    >
+                      {tab} Protocols
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -247,6 +298,14 @@ export default function Outreach() {
                   {leadsCount > 0 ? `${leadsCount} Leads Ready` : 'Upload Leads (.csv)'}
                 </button>
               </div>
+              <a 
+                href="/leads_sample.csv" 
+                download 
+                className="hidden md:flex items-center justify-center px-4 bg-white/5 border border-white/5 rounded-2xl text-[9px] font-black uppercase tracking-widest text-muted-foreground hover:bg-white/10 transition-all"
+                title="Download Template"
+              >
+                Template
+              </a>
               <button 
                 onClick={deployBroadcast}
                 disabled={sending || !leadsCount}
