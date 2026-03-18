@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -16,7 +14,10 @@
 }
 
 body {
-  @apply bg-[#12100E] text-[#F5F1E9] antialiased;
+  background-color: #12100E;
+  color: #F5F1E9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "ss01", "ss02", "cv01", "cv02";
 }
 
@@ -25,5 +26,7 @@ body {
 }
 
 .obsidian-card {
-  @apply bg-[#0A0907] border border-white/[0.03] rounded-[2rem];
+  background-color: #0A0907;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 2rem;
 }
