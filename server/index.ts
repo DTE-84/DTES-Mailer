@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import { handleOutreachBroadcast } from "./routes/outreach";
+import { handleOutreachBroadcast } from "./routes/outreach.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

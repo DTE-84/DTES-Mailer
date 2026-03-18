@@ -1,15 +1,27 @@
 {
-	"tsconfig": "tsconfig.json",
-	"displayName": "High-Fidelity Mass Outreach Engine",
+	"name": "dtes-mailer",
 	"version": "1.0.0",
 	"description": "High-Fidelity Mass Outreach Engine",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
 		"dev:server": "tsx watch server/index.ts",
-		"build": "npm run build:client && npm run build:server",
-		"build:client": "vite build",
-		"build:server": "tsc -p tsconfig.server.json",
-		"compilerOptions": "{\"jsx\": \"react\", \"option2\": \"value2\", \"option3\": \"value3\"}"
+		"build": "vite build && tsc -p tsconfig.server.json",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@types/cors": "^2.8.19",
+		"cors": "^2.8.6",
+		"express": "^5.2.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/express": "^5.0.6",
+		"@types/react": "^18.2.0",
+		"@types/react-dom": "^18.2.0",
+		"tsx": "^4.0.0",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.0"
 	}
 }
