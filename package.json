@@ -30,6 +30,7 @@
 		"@types/express": "^5.0.6",
 		"@types/react": "^18.2.0",
 		"@types/react-dom": "^18.2.0",
+		"@types/tailwindcss": "^3.0.11",
 		"@vitejs/plugin-react": "^4.7.0",
 		"autoprefixer": "^10.4.27",
 		"postcss": "^8.5.8",

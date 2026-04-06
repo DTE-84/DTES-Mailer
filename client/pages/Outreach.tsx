@@ -47,25 +47,25 @@ const CampaignCard = ({ title, status, recipients, openRate, clickRate }: any) =
 
 const MASTER_PROTOCOLS = [
   {
-    id: 'de-01',
-    name: "The 5k Interval",
-    subject: "Service Alert: Your [Make] is due for its 5,000-mile optimization",
-    body: "Our records indicate your vehicle is reaching its next critical service interval. Maintaining your oil integrity and tire rotation rhythm is essential for long-term performance. We have an opening this Thursday—would you like me to reserve a spot for you?",
-    tag: "Maintenance / High Volume"
+    id: 'dte-01',
+    name: "The Pulse Sync",
+    subject: "Strategic Alert: Your Behavioral Pulse requires optimization",
+    body: "Our telemetry indicates your current trajectory is approaching a critical node. To maintain high-fidelity performance and ensure zero-downtime scalability, I recommend a 15-minute sync this Thursday. Shall I reserve a slot for you?",
+    tag: "Pulse / High Fidelity"
   },
   {
-    id: 'de-02',
-    name: "The Brake Safety Protocol",
-    subject: "Urgent: Safety inspection recommended for your [Model]",
-    body: "During your last visit, we noted your brake pad depth was approaching the 3/32\" threshold. To ensure your safety during wet conditions and avoid rotor damage, I recommend a proactive inspection this week. Mention this email for a complimentary pad measurement.",
-    tag: "Safety / High Urgency"
+    id: 'dte-02',
+    name: "The NestLegacy Protocol",
+    subject: "Urgent: Legacy Perimeter Audit Recommended",
+    body: "During our last data integrity sweep, we noted your wealth vault's radial progress rings are reaching the 3/32\" threshold for strategic rebalancing. To protect your assets and avoid transmission breach, I recommend a proactive audit this week.",
+    tag: "Legacy / High Urgency"
   },
   {
-    id: 'de-03',
-    name: "The Lease-End Sync",
-    subject: "Strategic Update: Your Lease Maturity & Service Options",
-    body: "Your current lease is approaching its perimeter. This is the optimal time to ensure all required service intervals are up to date to maximize your equity position. Let's sync on a 15-minute inspection to review your vehicle's health status...",
-    tag: "Lease / Strategic"
+    id: 'dte-03',
+    name: "The Fluff Biomechanic",
+    subject: "Operational Update: Your Biomechanic Data Integrity",
+    body: "Your current performance data indicates a slight drift in your analytical rhythm. This is the optimal time to ensure all behavioral pipelines are up to date to maximize your founder annex position. Let's sync on a 15-minute briefing to review your health status...",
+    tag: "Fluff / Strategic"
   }
 ];
 
@@ -78,7 +78,7 @@ export default function Outreach() {
   const [sending, setSending] = useState(false);
   const [leadsCount, setLeadsCount] = useState(0);
   const [libraryTab, setLibraryTab] = useState("Master");
-  const [vertical, setVertical] = useState("Automotive");
+  const [vertical, setVertical] = useState("DTE");
 
   const filteredProtocols = MASTER_PROTOCOLS.filter(p => 
     vertical === "General" ? true : p.tag.includes(vertical)
@@ -175,12 +175,12 @@ export default function Outreach() {
   const generateAIProtocol = () => {
     toast({
       title: "Nova AI Prompted",
-      description: "Engineering high-velocity sequence based on automotive behavioral triggers...",
+      description: "Engineering high-velocity sequence based on behavioral telemetry triggers...",
     });
     // Simulate Nova generation
     setTimeout(() => {
-      setSubject("URGENT: Your Vehicle's 30k Maintenance Perimeter");
-      setMessage("Our behavioral analysis indicates your vehicle is approaching its 30,000-mile performance perimeter. This is the critical stage for fluid integrity and spark plug optimization. We have a tactical opening this Friday. Shall I reserve it for you to ensure zero-downtime performance?");
+      setSubject("URGENT: Your Pulse Performance Perimeter");
+      setMessage("Our behavioral analysis indicates your Pulse trajectory is approaching a critical performance perimeter. This is the stage for tactical optimization and analytical alignment. We have a transmission opening this Friday. Shall I reserve it for you to ensure zero-downtime performance?");
       toast({
         title: "Protocol Engineered",
         description: "Nova has primed the sequence for maximum conversion.",

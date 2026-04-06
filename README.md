@@ -16,9 +16,9 @@ Most email tools are built for "creators." **DealerEmail** is built for the serv
 ---
 
 ## 🛠 The High-Fidelity Stack
-- **Frontend:** React 19 + Vite (Kinetic Green / Obsidian Aesthetic)
-- **Backend:** Node.js / Express (Standalone Outreach Engine)
-- **Intelligence:** Nova-Behavioral Analysis (Subject Line Velocity & Tone Scaling)
+- **Frontend:** React 19 + Vite (Lux Forest Aesthetic / Dark-Gold Protocol)
+- **Backend:** Node.js / Express (High-Fidelity Outreach Engine)
+- **Intelligence:** Nova Behavioral Analysis (Subject Line Velocity & Tone Scaling)
 - **Infrastructure:** DTE Managed Relay (High-Reputation IP Pools for 99% Inbox Delivery)
 
 ---
@@ -32,9 +32,9 @@ The tactical center for lead ingestion and sequence deployment.
 
 ### **2. Protocol Library (Master Sequences)**
 The "Done-For-You" engine. Includes pre-engineered templates:
-- **[DE-01] The 5k Cycle:** Automated oil change & tire rotation reminders.
-- **[DE-02] The Safety Breach:** High-conversion brake and tread depth alerts.
-- **[DE-03] The Lease Perimeter:** Strategic reach-outs for lease-end service intervals.
+- **[DTE-01] The Pulse Sync:** Behavioral trajectory and performance optimization.
+- **[DTE-02] The NestLegacy Audit:** Strategic rebalancing and wealth vault integrity.
+- **[DTE-03] The Fluff Biomechanic:** Analytical rhythm and founder annex positioning.
 
 ---
 

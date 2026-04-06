@@ -12,16 +12,26 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Serve static assets from the frontend build
-const distPath = path.resolve(__dirname, "../../dist");
-app.use(express.static(distPath));
+const distPath = path.resolve(__dirname, "../dist");
+// If running from dist/server/index.js, the path is actually "../"
+const staticPath = __dirname.includes("dist") ? path.resolve(__dirname, "..") : distPath;
+app.use(express.static(staticPath));
 // Core API
 app.get("/api/ping", (_req, res) => {
-    res.json({ message: "dtes-mailer heartbeat active." });
+    res.json({
+        status: "active",
+        engine: "dtes-mailer",
+        timestamp: new Date().toISOString()
+    });
 });
 app.post("/api/outreach/broadcast", handleOutreachBroadcast);
 // Fallback for SPA routing
-app.get("*", (_req, res) => {
-    res.sendFile(path.join(distPath, "index.html"));
+app.use((req, res, next) => {
+    if (req.path.startsWith("/api")) {
+        return next();
+    }
+    const indexPath = path.join(staticPath, "index.html");
+    res.sendFile(indexPath);
 });
 app.listen(port, () => {
     console.log(`🚀 dtes-mailer engine running on port ${port}`);
