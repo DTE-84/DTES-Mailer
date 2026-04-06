@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import { handleOutreachBroadcast } from "./routes/outreach.js";
 
@@ -16,9 +17,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static assets from the frontend build
-const distPath = path.resolve(__dirname, "../dist");
-// If running from dist/server/index.js, the path is actually "../"
-const staticPath = __dirname.includes("dist") ? path.resolve(__dirname, "..") : distPath;
+const __dirname_resolved = path.resolve(__dirname);
+const staticPath = __dirname_resolved.includes(path.join("dist", "server")) 
+  ? path.resolve(__dirname_resolved, "..") 
+  : path.resolve(__dirname_resolved, "../dist");
+
+console.log(`📡 Serving static files from: ${staticPath}`);
 
 app.use(express.static(staticPath));
 
@@ -27,7 +31,8 @@ app.get("/api/ping", (_req, res) => {
   res.json({ 
     status: "active",
     engine: "dtes-mailer",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || "development"
   });
 });
 
@@ -39,7 +44,11 @@ app.use((req, res, next) => {
     return next();
   }
   const indexPath = path.join(staticPath, "index.html");
-  res.sendFile(indexPath);
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).send("DTES Mailer: System Breach - Build Artifacts Missing.");
+  }
 });
 
 app.listen(port, () => {
