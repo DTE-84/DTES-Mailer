@@ -29,7 +29,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
             <div className="absolute inset-0 bg-primary/20 rounded-full animate-pulse" />
             <div className="relative z-10 w-8 h-8 rounded-xl bg-black border border-primary/20 flex items-center justify-center overflow-hidden">
               <img 
-                src="/DTES-Mailer/DTESMLogo.svg" 
+                src="DTESMLogo.svg" 
                 alt="DTES Logo"
                 className="w-full h-full object-contain"
               />
@@ -61,7 +61,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
 );
 
 const App = () => (
-  <BrowserRouter basename="/DTES-Mailer">
+  <BrowserRouter>
     <Layout>
       <Routes>
         <Route path="/" element={<OutreachPage />} />

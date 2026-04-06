@@ -3,7 +3,8 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-	base: "/DTES-Mailer/",
+	root: "client",
+	base: "", // Relative base for subpath support (GitHub Pages/Vercel)
 	plugins: [react()],
 	resolve: {
 		alias: {
@@ -21,7 +22,7 @@ export default defineConfig({
 		},
 	},
 	build: {
-		outDir: "dist",
-		emptyOutDir: true,
+		outDir: "../", // Build into the project root
+		emptyOutDir: false, // DO NOT delete source files
 	},
 });

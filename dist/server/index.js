@@ -12,11 +12,8 @@ const port = process.env.PORT || 8001; // Dedicated port for dtes-mailer
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Serve static assets from the frontend build
-const __dirname_resolved = path.resolve(__dirname);
-const staticPath = __dirname_resolved.includes(path.join("dist", "server"))
-    ? path.resolve(__dirname_resolved, "..")
-    : path.resolve(__dirname_resolved, "../dist");
+// Serve static assets from the project root (where built files are placed)
+const staticPath = path.resolve(__dirname, "..");
 console.log(`📡 Serving static files from: ${staticPath}`);
 app.use(express.static(staticPath));
 // Core API
@@ -39,7 +36,7 @@ app.use((req, res, next) => {
         res.sendFile(indexPath);
     }
     else {
-        res.status(404).send("DTES Mailer: System Breach - Build Artifacts Missing.");
+        res.status(404).send("DTES Mailer: System Breach - Application artifacts not found at root.");
     }
 });
 app.listen(port, () => {
